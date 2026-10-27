@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b080a">
+  <meta name="description" content="AI GAZ — workspace AI untuk coding, kreativitas, dan produktivitas.">
+  <title>AI GAZ — Developer Workspace</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-page="home">
+        <span class="logo">G</span>
+        <span class="brand-text">AI <b>GAZ</b>
+          <small>DEVELOPER WORKSPACE</small>
+        </span>
+      </a>
+
+      <button class="new-chat" data-action="new-chat">＋ &nbsp; Chat Baru</button>
+
+      <div class="label">WORKSPACE</div>
+      <nav>
+        <button class="nav active" data-page="home"><span>⌂</span> Beranda</button>
+        <button class="nav" data-page="chat"><span>▤</span> Chat AI</button>
+        <button class="nav" data-page="coding"><span>⌘</span> AI Coding</button>
+        <button class="nav" data-page="creative"><span>✧</span> AI Kreatif</button>
+        <button class="nav" data-page="islamic"><span>☪</span> Pusat Islami</button>
+
+      </nav>
+
+      <div class="label">PERSONAL</div>
+      <nav>
+        <button class="nav" data-page="history"><span>◷</span> Riwayat Chat</button>
+        <button class="nav" data-page="api"><span>⚿</span> API Connection</button>
+        <button class="nav" data-page="settings"><span>⚙</span> Pengaturan</button>
+      </nav>
+
+      <div class="side-bottom">
+        <div class="online"><i></i><span id="connectionLabel">Memeriksa backend...</span></div>
+        <div class="profile">
+          <div class="profile-logo">G</div>
+          <div><strong>Pengguna GAZ</strong><small>Personal workspace</small></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="top-start">
+          <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
+          <span class="crumb">AI GAZ <b>/</b> <span id="pageCrumb">Beranda</span></span>
+        </div>
+        <div class="top-end"><i></i> AI WORKSPACE <span class="user-mini">G</span></div>
+      </header>
+
+      <section class="content" id="content" aria-live="polite"></section>
+
+      <footer>AI GAZ <span>·</span> Built for your ideas
+        <span class="footer-right">Periksa informasi penting dari AI.</span>
+      </footer>
+    </main>
+  </div>
+
+    <div class="toast" id="toast" role="status"></div>
+
+  <!-- Firebase SDK untuk Login dan Register -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+
+  <!-- Sistem autentikasi AIGAZ -->
+  <script src="/firebase-auth.js"></script>
+
+  <!-- Fitur utama AIGAZ -->
+  <script src="/app.js" defer></script>
+  <script src="/islamic.js"></script>
+  <script src="/riddles.js"></script>
+</body>
+</html>

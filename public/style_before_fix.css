@@ -1,0 +1,914 @@
+
+:root {
+  color-scheme: dark;
+  --bg:#0b080a;
+  --panel:#100c0e;
+  --card:#141015;
+  --line:#302027;
+  --red:#a52840;
+  --bright:#e0526c;
+  --text:#f5edf0;
+  --muted:#a38d94;
+}
+
+* { box-sizing:border-box }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:13px "Segoe UI",Arial,sans-serif;
+}
+button,input,textarea { font:inherit }
+button { cursor:pointer;color:inherit }
+button:focus-visible,input:focus-visible,textarea:focus-visible {
+  outline:2px solid var(--bright);
+  outline-offset:2px;
+}
+.layout { display:flex;min-height:100vh }
+.sidebar {
+  width:250px;flex-shrink:0;position:fixed;inset:0 auto 0 0;
+  background:#0e0a0c;border-right:1px solid var(--line);
+  padding:23px 15px;display:flex;flex-direction:column;z-index:10;
+  overflow-y:auto;
+}
+.brand {
+  display:flex;align-items:center;gap:11px;text-decoration:none;
+  color:var(--text);font-size:21px;font-weight:750;
+}
+.brand b { color:var(--bright) }
+.brand small {
+  display:block;font-size:8px;color:#94717c;
+  letter-spacing:1.3px;margin-top:4px;
+}
+.logo,.profile-logo,.user-mini {
+  display:grid;place-items:center;
+  background:linear-gradient(145deg,#c3435d,#641425);
+  color:white;font-weight:700;
+}
+.logo {
+  width:40px;height:40px;border-radius:12px;
+  box-shadow:0 0 22px #9e2c4330;
+}
+.new-chat {
+  margin-top:32px;width:100%;padding:12px;
+  background:linear-gradient(110deg,#4b1925,#261016);
+  border:1px solid #63303c;border-radius:8px;text-align:left;
+}
+.new-chat:hover { border-color:var(--bright) }
+.label {
+  font-size:9px;color:#987681;letter-spacing:1.6px;
+  font-weight:700;margin:29px 9px 10px;
+}
+nav { display:grid;gap:4px }
+.nav {
+  display:flex;align-items:center;gap:13px;
+  padding:12px;border:1px solid transparent;border-radius:7px;
+  background:transparent;color:#b19aa2;text-align:left;
+}
+.nav>span { width:15px;text-align:center }
+.nav:hover,.nav.active {
+  background:#2b151c;border-color:#45212b;color:#ffe7ec;
+}
+.side-bottom { margin-top:auto;padding-top:25px }
+.online {
+  display:flex;align-items:center;gap:8px;color:#9c858c;
+  font-size:10px;padding:12px 8px;border-bottom:1px solid var(--line);
+}
+.online i,.top-end i {
+  width:7px;height:7px;background:#78c89a;
+  border-radius:50%;box-shadow:0 0 8px #78c89a55;
+}
+.profile { display:flex;align-items:center;gap:10px;padding:15px 4px 0 }
+.profile-logo,.user-mini { width:34px;height:34px;border-radius:50% }
+.profile strong,.profile small { display:block }
+.profile strong { font-size:11px }
+.profile small { color:var(--muted);font-size:10px;margin-top:4px }
+
+.main {
+  margin-left:250px;min-width:0;flex:1;min-height:100vh;
+  display:flex;flex-direction:column;
+}
+.topbar {
+  height:65px;flex-shrink:0;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 27px;background:#0d090b;
+}
+.top-start,.top-end { display:flex;align-items:center;gap:12px }
+.crumb { font-size:11px;color:#c7b1b8 }
+.crumb b { color:#67414b;padding:0 7px }
+.top-end { font-size:9px;color:#a58a93;letter-spacing:1px }
+.user-mini { width:29px;height:29px;font-size:11px;margin-left:8px }
+.menu-btn { display:none;background:transparent;border:0 }
+.content { width:100%;max-width:1400px;padding:34px;flex:1;margin:0 auto }
+.heading-row {
+  display:flex;justify-content:space-between;align-items:center;
+  gap:15px;flex-wrap:wrap;
+}
+.eyebrow { color:#c56c80;letter-spacing:2px;font-size:9px;font-weight:700 }
+h1,h2,h3,p { margin-top:0 }
+h1 { font-size:clamp(27px,3vw,36px);letter-spacing:-1px;margin:12px 0 }
+h1 span { color:#d65770 }
+.subtitle { color:var(--muted);font-size:12px;line-height:1.8 }
+.primary,.secondary {
+  border-radius:8px;padding:11px 15px;
+  border:1px solid #713143;background:#641d30;color:#fff;
+}
+.primary:hover { background:#82263c }
+.secondary { background:#181115;border-color:var(--line);color:#e7cfd6 }
+button:disabled { opacity:.5;cursor:not-allowed }
+.section-head {
+  display:flex;align-items:center;justify-content:space-between;
+  margin:25px 0 14px;gap:12px;
+}
+.section-head h2 { font-size:13px;margin:0 }
+.section-head span { font-size:10px;color:var(--muted) }
+.search {
+  width:min(100%,300px);background:#130e11;border:1px solid var(--line);
+  padding:11px 13px;color:white;border-radius:8px;
+}
+.categories { display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 }
+.category {
+  padding:8px 13px;border:1px solid var(--line);border-radius:7px;
+  background:#120e10;color:#b39ca4;font-size:10px;
+}
+.category.active,.category:hover {
+  background:#3b1823;border-color:#783448;color:#ffe6ec;
+}
+.grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px }
+.tool-card {
+  background:linear-gradient(145deg,#141116,#100c0e);
+  border:1px solid #302129;border-radius:12px;padding:19px;
+  min-height:166px;transition:.2s;cursor:pointer;
+}
+.tool-card:hover {
+  border-color:#783548;transform:translateY(-2px);
+  box-shadow:0 12px 30px #0002;
+}
+.tool-icon {
+  width:39px;height:39px;display:grid;place-items:center;
+  border:1px solid #4b2631;border-radius:10px;background:#29131b;
+  color:#e36a83;font-size:19px;margin-bottom:17px;
+}
+.tool-card h3 { font-size:13px;margin:0 0 8px }
+.tool-card p { font-size:11px;color:#a8929a;line-height:1.7;margin:0 0 13px }
+.tag {
+  display:inline-block;border:1px solid #38222b;border-radius:4px;
+  padding:5px 7px;color:#c26c80;font-size:8px;letter-spacing:1px;
+}
+.chat-layout { display:flex;flex-direction:column;min-height:60vh }
+.chat-messages { flex:1;max-width:850px;width:100%;margin:0 auto;padding:20px 0 }
+.welcome { text-align:center;margin:auto;max-width:600px;padding:35px 10px }
+.hero-logo {
+  width:74px;height:74px;display:grid;place-items:center;margin:0 auto 23px;
+  border-radius:23px;background:linear-gradient(145deg,#74223a,#241017);
+  border:1px solid #7c3448;box-shadow:0 0 45px #a5284020;
+  font-size:37px;font-weight:800;color:#f4c3cd;
+}
+.welcome h2 { font-size:32px;margin:12px 0 }
+.welcome h2 span { color:#d65770 }
+.message { display:flex;gap:11px;margin:24px 0;align-items:flex-start }
+.message-icon {
+  width:32px;height:32px;flex-shrink:0;display:grid;place-items:center;
+  background:#34151f;border:1px solid #5a2938;border-radius:9px;
+  color:#f0b7c3;font-weight:700;
+}
+.message-body { flex:1;min-width:0 }
+.message-name { font-size:10px;color:#bf929e;margin:3px 0 9px }
+.message-text {
+  font-size:12px;line-height:1.9;white-space:pre-wrap;
+  overflow-wrap:anywhere;color:#e8dce0;
+}
+.composer {
+  max-width:850px;width:100%;margin:15px auto 0;
+  border:1px solid #4a2631;border-radius:12px;padding:12px;background:#130e11;
+}
+.composer textarea {
+  display:block;width:100%;min-height:48px;max-height:170px;
+  resize:vertical;background:transparent;color:white;border:0;
+  outline:0;line-height:1.7;
+}
+.composer-bottom { display:flex;justify-content:space-between;align-items:center;gap:12px }
+.composer-bottom small { color:#9d838d;font-size:10px }
+.send {
+  width:36px;height:34px;border:0;border-radius:9px;
+  background:linear-gradient(145deg,#d44e69,#791d33);font-size:21px;
+}
+.panel { border:1px solid var(--line);border-radius:12px;padding:20px;background:#120e11;margin-top:18px }
+.panel h2 { font-size:14px }
+.field { display:grid;gap:8px;margin:16px 0 }
+.field label { font-size:11px;color:#c9b3bb }
+.field input,.field textarea {
+  background:#0b080a;color:white;border:1px solid #38232c;
+  border-radius:7px;padding:12px;width:100%;
+}
+.notice {
+  padding:12px;border:1px solid #5c303b;background:#28141b;
+  color:#dcb7c0;border-radius:8px;font-size:11px;line-height:1.8;
+}
+.empty {
+  padding:25px;text-align:center;color:var(--muted);
+  border:1px dashed #39242d;border-radius:10px;
+}
+.history-item {
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 0;border-bottom:1px solid var(--line);
+}
+.history-title { min-width:0;flex:1;overflow-wrap:anywhere }
+.history-title strong { font-size:12px;display:block }
+.history-title small { color:var(--muted);font-size:10px;display:block;margin-top:5px }
+.history-actions { display:flex;gap:6px;flex-wrap:wrap }
+footer {
+  border-top:1px solid #25191f;padding:14px 25px;
+  color:#826c74;font-size:9px;
+}
+footer span { color:#b04a62;padding:0 5px }
+.footer-right { float:right }
+.toast {
+  position:fixed;bottom:22px;left:50%;transform:translate(-50%,10px);
+  opacity:0;pointer-events:none;background:#29131b;border:1px solid #713143;
+  border-radius:9px;padding:12px 16px;z-index:30;transition:.2s;
+  color:#f5e7eb;font-size:11px;max-width:90vw;
+}
+.toast.show { opacity:1;transform:translate(-50%,0) }
+
+@media(max-width:1000px) {
+  .grid { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .content { padding:25px }
+}
+@media(max-width:700px) {
+  .sidebar {
+    transform:translateX(-105%);transition:transform .22s;
+    box-shadow:20px 0 50px #0008;
+  }
+  .sidebar.open { transform:translateX(0) }
+  .main { margin-left:0 }
+  .menu-btn { display:block }
+  .topbar { height:58px;padding:0 14px }
+  .content { padding:22px 15px }
+  .grid { grid-template-columns:1fr 1fr;gap:9px }
+  .tool-card { padding:13px;min-height:155px }
+  .tool-icon { margin-bottom:13px }
+  .tool-card h3 { font-size:12px }
+  .tool-card p { font-size:10px }
+  .top-end { font-size:8px }
+  .footer-right { display:none }
+  .history-item { align-items:flex-start;flex-wrap:wrap }
+}
+@media(max-width:390px) {
+  .grid { grid-template-columns:1fr }
+  .search { width:100% }
+}
+
+/* ========================================
+   AIGAZ — ISLAMIC CENTER
+   Premium Black • Emerald • Gold
+======================================== */
+
+.islamic-app {
+  --islamic-bg: #080d0b;
+  --islamic-panel: #101a15;
+  --islamic-panel-2: #14251b;
+  --islamic-emerald: #20d99a;
+  --islamic-gold: #d8b56a;
+  --islamic-text: #f1f7f2;
+  --islamic-muted: #a1b4a8;
+  color: var(--islamic-text);
+  width: 100%;
+  padding-bottom: 40px;
+}
+
+.islamic-app * {
+  box-sizing: border-box;
+}
+
+.islamic-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 34px 28px;
+  border: 1px solid rgba(216, 181, 106, 0.25);
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 90% 10%, rgba(32, 217, 154, 0.18), transparent 45%),
+    linear-gradient(135deg, #10251a, #080d0b 72%);
+}
+
+.islamic-hero h1 {
+  margin: 10px 0;
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -1px;
+}
+
+.islamic-hero > p:last-child {
+  margin-bottom: 0;
+  color: var(--islamic-muted);
+}
+
+.islamic-ornament {
+  float: right;
+  color: var(--islamic-gold);
+  font-size: 62px;
+  opacity: 0.85;
+}
+
+.islamic-eyebrow {
+  color: var(--islamic-gold);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.islamic-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 18px 0;
+  scrollbar-width: thin;
+}
+
+.islamic-tab {
+  flex: 0 0 auto;
+  padding: 11px 16px;
+  color: var(--islamic-muted);
+  background: var(--islamic-panel);
+  border: 1px solid #26392d;
+  border-radius: 12px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.islamic-tab:hover,
+.islamic-tab.active {
+  color: #07130d;
+  background: var(--islamic-emerald);
+  border-color: var(--islamic-emerald);
+}
+
+.islamic-content h2 {
+  margin: 10px 0;
+  font-size: 25px;
+}
+
+.islamic-muted,
+.islamic-note {
+  color: var(--islamic-muted);
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.islamic-welcome {
+  padding: 22px 0;
+}
+
+.islamic-welcome p {
+  color: var(--islamic-muted);
+  line-height: 1.7;
+}
+
+.islamic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.islamic-feature {
+  display: block;
+  text-align: left;
+  padding: 22px;
+  color: var(--islamic-text);
+  background: linear-gradient(145deg, var(--islamic-panel-2), var(--islamic-panel));
+  border: 1px solid #263b2e;
+  border-radius: 18px;
+  cursor: pointer;
+  font: inherit;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.islamic-feature:hover {
+  transform: translateY(-3px);
+  border-color: var(--islamic-emerald);
+}
+
+.islamic-feature > span {
+  font-size: 27px;
+}
+
+.islamic-feature h3 {
+  margin: 14px 0 8px;
+}
+
+.islamic-feature p {
+  min-height: 40px;
+  color: var(--islamic-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.islamic-feature b {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--islamic-gold);
+  font-size: 12px;
+}
+
+.islamic-card,
+.islamic-ayah,
+.islamic-name-card,
+.islamic-prayer-time {
+  padding: 20px;
+  margin: 12px 0;
+  background: var(--islamic-panel);
+  border: 1px solid #26392d;
+  border-radius: 16px;
+}
+
+.islamic-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--islamic-gold);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.islamic-copy,
+.islamic-primary {
+  padding: 9px 13px;
+  color: #06150d;
+  background: var(--islamic-emerald);
+  border: 0;
+  border-radius: 9px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.islamic-arabic {
+  color: #f7e5b5;
+  font-family: "Noto Naskh Arabic", "Amiri", serif;
+  font-size: 27px;
+  line-height: 2.1;
+  text-align: right;
+  direction: rtl;
+}
+
+.islamic-card > p:not(.islamic-arabic) {
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.islamic-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.islamic-controls input,
+.islamic-controls select,
+.islamic-tasbih select {
+  min-width: 0;
+  padding: 12px 14px;
+  color: var(--islamic-text);
+  background: #0b120e;
+  border: 1px solid #344b3b;
+  border-radius: 10px;
+  font: inherit;
+}
+
+.islamic-controls input {
+  flex: 1 1 180px;
+}
+
+.islamic-controls select {
+  flex: 1 1 200px;
+}
+
+.islamic-quran-result {
+  margin-top: 18px;
+}
+
+.islamic-surah-heading {
+  padding: 22px;
+  margin-bottom: 15px;
+  text-align: center;
+  background: linear-gradient(135deg, #143522, #101a15);
+  border: 1px solid rgba(216, 181, 106, 0.3);
+  border-radius: 16px;
+}
+
+.islamic-surah-heading h3 {
+  color: var(--islamic-gold);
+  font-size: 25px;
+}
+
+.islamic-surah-heading p {
+  color: var(--islamic-muted);
+}
+
+.islamic-ayah {
+  position: relative;
+  margin: 12px 0;
+  padding: 20px;
+}
+
+.islamic-ayah-number {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: var(--islamic-gold);
+  border: 1px solid rgba(216, 181, 106, 0.45);
+  border-radius: 50%;
+  font-size: 12px;
+}
+
+.islamic-ayah .islamic-arabic {
+  margin-top: 8px;
+}
+
+.islamic-translation {
+  color: #d1ddd4;
+  font-size: 14px;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.islamic-tasbih {
+  max-width: 520px;
+  margin: 20px auto;
+  padding: 28px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(32, 217, 154, 0.12), transparent 55%),
+    var(--islamic-panel);
+  border: 1px solid rgba(216, 181, 106, 0.35);
+  border-radius: 24px;
+}
+
+.islamic-tasbih label {
+  display: block;
+  margin: 15px 0 8px;
+  color: var(--islamic-muted);
+  font-size: 13px;
+}
+
+.islamic-tasbih select {
+  width: 100%;
+}
+
+.islamic-count {
+  display: grid;
+  width: 190px;
+  height: 190px;
+  place-items: center;
+  margin: 26px auto;
+  border: 7px solid rgba(32, 217, 154, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 0 35px rgba(32, 217, 154, 0.1);
+  color: var(--islamic-emerald);
+  font-size: 54px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.islamic-count-button {
+  display: block;
+  width: 100%;
+  min-height: 60px;
+  margin: 18px 0 12px;
+  color: #06150d;
+  background: linear-gradient(135deg, #43efb2, #16b77e);
+  border: 0;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.islamic-reset {
+  padding: 10px 14px;
+  color: var(--islamic-muted);
+  background: transparent;
+  border: 1px solid #344b3b;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.islamic-prayer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.islamic-prayer-time {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+}
+
+.islamic-prayer-time span {
+  color: var(--islamic-muted);
+  font-size: 13px;
+}
+
+.islamic-prayer-time strong {
+  color: var(--islamic-gold);
+  font-size: 23px;
+  font-variant-numeric: tabular-nums;
+}
+
+.islamic-names-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.islamic-name-card {
+  margin: 0;
+  padding: 16px;
+}
+
+.islamic-name-card > span {
+  color: var(--islamic-gold);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.islamic-name-card h3 {
+  color: var(--islamic-emerald);
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+.islamic-name-card p {
+  color: var(--islamic-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.islamic-loading,
+.islamic-error {
+  padding: 18px;
+  background: var(--islamic-panel);
+  border-radius: 12px;
+  line-height: 1.7;
+}
+
+.islamic-error {
+  color: #ffaaa3;
+  border: 1px solid #6e3834;
+}
+
+@media (max-width: 700px) {
+  .islamic-hero {
+    padding: 24px 20px;
+  }
+
+  .islamic-ornament {
+    font-size: 45px;
+  }
+
+  .islamic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .islamic-feature p {
+    min-height: 0;
+  }
+
+  .islamic-prayer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .islamic-names-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .islamic-tasbih {
+    padding: 20px;
+  }
+
+  .islamic-arabic {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 380px) {
+  .islamic-names-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* AIGAZ RIDDLE GAME */
+.riddle-app {
+  display: grid;
+  gap: 22px;
+  max-width: 1000px;
+  margin: 0 auto;
+  color: #eefbf4;
+}
+.riddle-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  border: 1px solid rgba(52, 211, 153, .25);
+  border-radius: 24px;
+  background: radial-gradient(ellipse at top right, rgba(16, 185, 129, .2), transparent 55%), #0c1512;
+}
+.riddle-orb {
+  display: grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(110, 231, 183, .3);
+  border-radius: 18px;
+  background: rgba(16, 185, 129, .12);
+  font-size: 30px;
+}
+.riddle-eyebrow {
+  margin: 18px 0 8px;
+  color: #6ee7b7;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.riddle-hero h1 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -1.5px;
+}
+.riddle-hero p:last-child {
+  margin-bottom: 0;
+  color: #a7bdb1;
+  line-height: 1.7;
+}
+.riddle-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.riddle-stats > div {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid #23372e;
+  border-radius: 17px;
+  background: #101a15;
+}
+.riddle-stats span {
+  color: #8fa99a;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+.riddle-stats strong {
+  color: #6ee7b7;
+  font-size: 27px;
+}
+.riddle-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #23372e;
+  border-radius: 16px;
+  background: #0e1712;
+}
+.riddle-toolbar label {
+  color: #b9cfc2;
+  font-size: 13px;
+}
+.riddle-toolbar select,
+.riddle-answer-form input {
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid #2d493b;
+  border-radius: 11px;
+  outline: none;
+  background: #101e17;
+  color: #f0fff6;
+}
+.riddle-toolbar select:focus,
+.riddle-answer-form input:focus {
+  border-color: #34d399;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, .1);
+}
+.riddle-card {
+  padding: clamp(18px, 4vw, 30px);
+  border: 1px solid #294537;
+  border-radius: 22px;
+  background: linear-gradient(145deg, #122019, #0b120e);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .16);
+}
+.riddle-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.riddle-tag {
+  padding: 7px 11px;
+  border: 1px solid rgba(52, 211, 153, .3);
+  border-radius: 999px;
+  background: rgba(16, 185, 129, .1);
+  color: #6ee7b7;
+  font-size: 11px;
+  font-weight: 800;
+}
+.riddle-number {
+  color: #789486;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+.riddle-card h2 {
+  margin: 26px 0;
+  font-size: clamp(21px, 3vw, 30px);
+  line-height: 1.5;
+}
+.riddle-answer-form {
+  display: flex;
+  gap: 10px;
+}
+.riddle-answer-form input {
+  flex: 1;
+  width: 100%;
+}
+.riddle-btn {
+  padding: 12px 16px;
+  border: 1px solid #34d399;
+  border-radius: 11px;
+  background: #10b981;
+  color: #06150e;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .15s, background .15s;
+}
+.riddle-btn:hover {
+  background: #6ee7b7;
+  transform: translateY(-1px);
+}
+.riddle-btn:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+  transform: none;
+}
+.riddle-btn-secondary {
+  border-color: #2b493a;
+  background: #14231a;
+  color: #c5e6d3;
+}
+.riddle-btn-secondary:hover {
+  background: #1b3526;
+}
+.riddle-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.riddle-hint {
+  min-height: 22px;
+  margin: 18px 0 0;
+  color: #f5d98b;
+  line-height: 1.6;
+}
+.riddle-feedback {
+  margin-top: 12px;
+  padding: 0;
+  border-radius: 12px;
+  line-height: 1.7;
+}
+.riddle-feedback:not(:empty) {
+  padding: 14px;
+  background: #18231c;
+}
+.riddle-feedback.is-correct {
+  border: 1px solid rgba(52, 211, 153, .3);
+  color: #86efac;
+}
+.riddle-feedback.is-wrong {
+  border: 1px solid rgba(251, 191, 36, .25);
+  color: #fcd38d;
+}
+@media (max-width: 620px) {
+  .riddle-hero { padding: 22px; }
+  .riddle-stats { gap: 8px; }
+  .riddle-stats > div { padding: 13px 10px; }
+  .riddle-stats strong { font-size: 22px; }
+  .riddle-toolbar { align-items: stretch; }
+  .riddle-toolbar select { flex: 1; }
+  .riddle-answer-form { flex-direction: column; }
+  .riddle-answer-form .riddle-btn { width: 100%; }
+  .riddle-actions .riddle-btn { flex: 1 1 auto; }
+}
+
+
